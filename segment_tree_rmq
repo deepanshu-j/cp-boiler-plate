@@ -1,0 +1,116 @@
+///<-- DEEPANSHU JOHAR -->///
+///////////////////////////////////////////
+///range minimum query - using segment tree...(build , query ,& update(point value update) )  (1 indexed array and segTree)
+///////////////////////////////////////////
+
+#include <bits/stdc++.h>
+#define ll long long int
+#define INF 0x3f3f3f3f
+#define endl "\n"
+#define fast_io {\
+                ios_base::sync_with_stdio(false);\
+                cin.tie(0);\
+                cout.tie(0);}
+#define pb push_back
+using namespace std;
+int *st;
+int *a;
+void build(int l,int r,int idx=1)////segment tree is 1 indexed as well 
+////the idx in the parameters will go hand in hand with l and r/////
+////this means that as idx is computed for the children the l and r are also changed....
+{   /////l and represent the range of the node in the recursion////// 
+    if(l==r && l>0)///leaf
+        return void(st[idx]=a[l]);
+    
+        int mid=(l+r)/2;
+        //left child
+        if(l<=mid)
+        build(l,mid,2*idx);
+        
+        //right child
+        if(mid<=r)
+        build(mid+1,r,2*idx+1);
+        
+        // st[idx]=st[2*idx]+st[2*idx+1];
+        st[idx]=min(st[2*idx],st[2*idx+1]);
+}
+
+int query(int ql,int qr,int s,int e,int idx){
+    
+    if(ql<=s && qr>=e)///complete overlap///this node of the segtree fits inside our queryb range
+    //ie this node is a subpart of our query
+    return st[idx];
+    
+    if(ql>e || qr<s)/////there is some non overlapping part 
+    ///no overlap
+    return INF;
+    
+    int mid=(s+e)/2;
+    
+    return min( query(ql,qr,s,mid,2*idx),query(ql,qr,mid+1,e,2*idx+1) );
+}
+void update(int x,int y,int s,int e,int idx){
+    if(s==e && s==x)///when the range of the node is the node we want to update
+    {
+        a[x]=y;
+        st[idx]=a[x];
+        return;
+    }    
+    else
+    {
+        int mid=(s+e)/2;
+        if(x>=s&&x<=mid)
+        update(x,y,s,mid,2*idx);
+        if(x>=mid+1 && x<=e)
+        update(x,y,mid+1,e,2*idx+1);
+        
+        st[idx]=min(st[2*idx],st[2*idx+1]);
+    }
+    
+}
+void solve()
+{
+    int n,q;
+    cin>>n>>q;
+    // int a[n+2];//
+    a=new int[n+2];
+    memset(a,0,sizeof a);
+    for(int i=1;i<=n;++i)
+        cin>>a[i];
+    
+    //int st[4*n];//
+    st=new int[4*n];
+    memset(st,0,sizeof st);
+    
+    build(1,n,1);
+    
+    ///printing segtree
+    // for(int i=1;i<=4*n;++i)
+    // cout<<st[i]<<" ";
+    
+    while(q--)
+    {
+        char c;
+        cin>>c;
+        if(c=='q')
+        {
+            int ql,qr;
+            cin>>ql>>qr;
+            cout<<query(ql,qr,1,n,1)<<endl;
+        }
+        else
+        if(c=='u')
+        {
+            int x,y;
+            cin>>x>>y;
+            a[x]=y;
+            update(x,y,1,n,1);
+        }
+    }
+    
+}
+int main() {
+	fast_io;
+	
+	  solve();
+}
