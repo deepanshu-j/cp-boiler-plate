@@ -48,8 +48,8 @@ void solve(){
     
     ///calc fact and inv vector///
     
-    vector<ll> fact(n,1LL);
-    vector<ll> inv(n,1LL);
+    vector<ll> fact(n+1,1LL);
+    vector<ll> inv(n+1,1LL);
     
     for(int i=1;i<=n;++i)
     {
