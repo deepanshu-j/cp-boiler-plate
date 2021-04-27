@@ -109,3 +109,25 @@ int main() {
 	  solve();
 	}   
 }
+
+// Input:
+// 2
+// 2
+// 1 2 3
+// 3 2 1
+// 2
+// 1 0 1
+// 2 1 0
+
+// Output:
+// 3 8 14 8 3
+// 2 1 2 1 0
+
+// Explaination
+// 1st test case n=2, the polynomials are x^2 + 2x + 3 and 3x^2 + 2x + 1.
+
+// On multiplying we get 3x^4 + 8x^3 + 14x^2 + 8x + 3 and hence the answer is 3 8 14 8 3.
+
+// 2nd test case n=2, the polynomials are x^2 + 1 and 2x^2 + x. 
+
+// On multiplying we get 2x^4 + x^3 + 2x^2 + x and hence the answer is 2 1 2 1 0. 
