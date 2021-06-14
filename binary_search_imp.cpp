@@ -23,7 +23,7 @@ bool check(ll d){
     ll last=-INF;
     ll cnt=0;
 
-    rep(i,1,n){
+    rep(i,0,n){
 
         if(a[i]-last >=d){
             last=a[i];
@@ -50,7 +50,7 @@ void binarySearch(){
             h=mid-1;
         }
     }
-    cout<<ans+1<<"\n";
+    cout<<ans<<"\n";
 }
 void solve(){
 
