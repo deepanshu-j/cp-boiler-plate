@@ -11,7 +11,7 @@ typedef pair<int,int> pii;
 typedef vector<int> vi;
 
 // n is 0 indexed //
-int printKthBit(unsigned int n, unsigned int k)
+int getKthBit(unsigned int n, unsigned int k)
 {
     return ((n & (1 << k)) >> k);
 }
