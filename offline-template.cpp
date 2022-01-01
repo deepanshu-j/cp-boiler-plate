@@ -97,5 +97,9 @@ signed main() {
 	{
 	    solve();
 	}
+
+// #ifdef LOCAL_DEFINE
+        // cout << "Time elapsed: " << 1.0 * clock() / CLOCKS_PER_SEC << " s.\n"; // or cerr
+// #endif
 	return 0;
 }
