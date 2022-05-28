@@ -26,10 +26,9 @@ typedef vector<ll> vi;
 #define inf 0x3f3f3f3f
 const ll MOD= 998244353;
 
-void solve(){
-    string s="i love stupidity";
-    // cin>>s;
-    
+
+// split string using string stream in c++ //
+vector<string> split(string s){
     vector<string> splits;
     std::istringstream ss(s);
     std::string token;
@@ -39,6 +38,14 @@ void solve(){
         // std::cout << token << '\n';
         splits.emplace_back(token);
     }
+    return splits;
+}
+
+void solve(){
+    string s="all pretest passed";
+    // cin>>s;
+    
+    vector<string> splits = split(s);
     
     for(auto x: splits)cout<<x<<'\n';
     
